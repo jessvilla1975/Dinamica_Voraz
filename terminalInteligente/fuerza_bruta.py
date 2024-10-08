@@ -83,15 +83,13 @@ def transformar_fuerza_bruta(origen, destino):
     return mejor_costo, mejor_secuencia
 
 # Función principal
-"""if __name__ == "__main__":
-    cadena_origen = "algorithm"
-    cadena_final = "altruistic"
+if __name__ == "__main__":
+    cadena_origen = "ingenioso"
+    cadena_final = "ingeniero"
 
     costo_total, operaciones = transformar_fuerza_bruta(cadena_origen, cadena_final)
     resultado_final = calcular_costo_total(operaciones)
-    print(f"Costo total (5a + d + r + 4i + k): {resultado_final}")
     print(f"Costo de la transformacion : {costo_total}")
+    print(f"Costo total (5a + d + r + 4i + k): {resultado_final}")
     print(f"Mejor secuencia de operaciones:")
-    for operacion in operaciones:
-        print(operacion)
-"""
+    print(f'Operaciones: {operaciones}')

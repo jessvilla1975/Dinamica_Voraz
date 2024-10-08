@@ -25,3 +25,17 @@ def calcular_costo_total(operaciones):
     return costo
 
 
+def calcular_costo(operaciones):
+    costo = 0
+    for op in operaciones:
+        if op == 'advance':
+            costo += COSTOS['advance']
+        elif op == 'delete':
+            costo += COSTOS['delete']
+        elif op.startswith('replace'):
+            costo += COSTOS['replace']
+        elif op.startswith('insert'):
+            costo += COSTOS['insert']
+        elif op == 'kill':
+            costo += COSTOS['kill']
+    return costo
