@@ -63,7 +63,8 @@ def mostrar_resultados(asignaciones, vr_total, ofertas_ordenadas, oferta_gobiern
     print(f"Valor máximo (vr): {vr_total}")
 
 
-# Nuevas ofertas proporcionadas (desorganizadas para probar la ordenación)
+#Pruebas
+""" # Nuevas ofertas proporcionadas (desorganizadas para probar la ordenación)
 nuevas_ofertas = [
     (500, 400, 600),
     (450, 100, 400),
@@ -79,4 +80,4 @@ oferta_gobierno = (100, 0, A)  # Oferta del gobierno
 mejor_asignacion_nueva, mejor_vr_nueva, ofertas_ordenadas = subasta_voraz(A, nuevas_ofertas, oferta_gobierno)
 
 # Mostrar los resultados detallados
-mostrar_resultados(mejor_asignacion_nueva, mejor_vr_nueva, ofertas_ordenadas, oferta_gobierno)
+mostrar_resultados(mejor_asignacion_nueva, mejor_vr_nueva, ofertas_ordenadas, oferta_gobierno) """

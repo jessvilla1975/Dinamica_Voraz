@@ -8,6 +8,9 @@ Este proyecto contiene la implementación de un algoritmo para transformar una c
 
 `test.py`
 
+## Ejecución Subasta Publica
+`test2.py`
+
 ## Integrantes
 
 - **Alejandro Marin Hoyos** - 2259353-3743

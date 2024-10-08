@@ -52,8 +52,4 @@ ofertas = [
 oferta_gobierno = (100, 0, A)  # Oferta del gobierno
 
 # Llamada a la función
-mejor_asignacion, mejor_vr = subasta_fuerzabruta(A, ofertas, oferta_gobierno)
-
-# Salida de la mejor asignación y el valor vr
-print(f"Mejor asignación: {mejor_asignacion}")
-print(f"Valor máximo (vr): {mejor_vr}")
+#mejor_asignacion, mejor_vr = subasta_fuerzabruta(A, ofertas, oferta_gobierno)
