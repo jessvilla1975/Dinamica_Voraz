@@ -9,9 +9,9 @@
 # da prioridad a la operación de reemplazo cuando los caracteres de las cadenas 
 # no coinciden. Esto se traduce en una estrategia más eficiente para minimizar 
 # el costo total de la transformación.
-# version: 1.0
+# version: 2.0
 
-from costos import COSTOS, calcular_costo_total, calcular_costo
+from costos import COSTOS, calcular_costo
 
 def calcular_solucion_optima(origen, destino):
     m, n = len(origen), len(destino)
@@ -55,7 +55,7 @@ def calcular_solucion_optima(origen, destino):
                     operations[i][j] = operations[k][j] + ['kill']
     
     # Imprimir la matriz dp
-    print("----------Matriz de costos (dp)--------------")
+    print("Matriz de costos (dp)")
     for fila in dp:
         print(fila)
         
