@@ -6,7 +6,7 @@
 # borrar, reemplazar, insertar y eliminar) que tienen costos específicos asociados.
 # version: 1.0
 
-from costos import COSTOS, calcular_costo_total, calcular_costo
+from .costos import COSTOS, calcular_costo_total, calcular_costo
 
 def algoritmo_voraz(x, y, costos=COSTOS):
     m, n = len(x), len(y)
