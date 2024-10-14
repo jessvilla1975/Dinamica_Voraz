@@ -1,7 +1,7 @@
 from terminalInteligente.dinamica import calcular_solucion_optima
 from terminalInteligente.voraz import algoritmo_voraz
 from terminalInteligente.bruta import transformar_fuerza_bruta
-from terminalInteligente.costos import calcular_costo_total
+from terminalInteligente.costos import calcular_costo
 
 
 def ejecutar_ejemplos():
@@ -21,10 +21,10 @@ def ejecutar_ejemplos():
         costo_bruta, secuencia_bruta = transformar_fuerza_bruta(origen, destino)
         
         # Calcular el costo total usando las operaciones devueltas
-        costo_total_bruta = calcular_costo_total(secuencia_bruta)
+        costo_total_bruta = calcular_costo(secuencia_bruta)
         output += "----------------------FUERZA BRUTA----------------------\n"
         output += f"Fuerza Bruta - Transformar '{origen}' en '{destino}':\n"
-        output += f"Costo total: {costo_total_bruta}\n"
+        output += f"Costo total: {costo_bruta}\n"
         output += f"Mejor secuencia de operaciones: {secuencia_bruta}\n\n"
  
         # Programación Dinámica

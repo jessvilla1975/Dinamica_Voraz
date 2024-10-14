@@ -11,7 +11,7 @@
 # el costo total de la transformación.
 # version: 2.0
 
-from .costos import COSTOS, calcular_costo_total, calcular_costo
+from .costos import COSTOS, calcular_costo
 
 def calcular_solucion_optima(origen, destino):
     m, n = len(origen), len(destino)
@@ -62,9 +62,9 @@ def calcular_solucion_optima(origen, destino):
         
     #imprimir el costo dp
     costo = calcular_costo(operations[m][n]) 
-    #print("Costo de la transformacion: ", costo) # Aqui tengo el costo de las operaciones
+    print("Costo de la transformacion: ", costo) # Aqui tengo el costo de las operaciones
 
-    return dp[m][n], operations[m][n], dp   # Retorna el costo y la lista de operaciones
+    return costo, operations[m][n], dp   # Retorna el costo y la lista de operaciones
 
 def imprimirmatriz(matriz):
     for fila in matriz:
@@ -75,7 +75,7 @@ if __name__ == '__main__':
     origen = 'ingenioso'
     destino = 'ingeniero'
     costo, operaciones, m = calcular_solucion_optima(origen, destino)
-    print(f'Costo total (5a + d + r + 4i + k): {costo}')
+    print(f'Costo total: {costo}')
     print(f"Mejor secuencia de operaciones:")
     print(f'Operaciones: {operaciones}')
     imprimirmatriz(m)

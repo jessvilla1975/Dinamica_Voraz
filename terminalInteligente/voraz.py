@@ -6,7 +6,7 @@
 # borrar, reemplazar, insertar y eliminar) que tienen costos específicos asociados.
 # version: 1.0
 
-from .costos import COSTOS, calcular_costo_total, calcular_costo
+from .costos import COSTOS
 
 def algoritmo_voraz(x, y, costos=COSTOS):
     m, n = len(x), len(y)
@@ -49,6 +49,6 @@ if __name__ == '__main__':
     costo, operaciones = algoritmo_voraz(cadena_origen, cadena_final, COSTOS)
     
     # Imprimir el costo y la secuencia de operaciones
-    print(f'Costo total (5a + d + r + 4i + k): {costo}')
+    print(f'Costo total:  {costo}')
     print(f"Mejor secuencia de operaciones:")
     print(f'Operaciones: {operaciones}')

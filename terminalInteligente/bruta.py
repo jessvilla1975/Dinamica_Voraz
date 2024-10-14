@@ -5,7 +5,7 @@
 # version: 1.0
 
 
-from .costos import COSTOS, calcular_costo_total
+from .costos import COSTOS, calcular_costo
 
 
 # Funciones para realizar las operaciones
@@ -85,12 +85,11 @@ def transformar_fuerza_bruta(origen, destino):
 
 # Función principal
 if __name__ == "__main__":
-    cadena_origen = "ingenioso"
-    cadena_final = "ingeniero"
+    cadena_origen = "algorithm"
+    cadena_final = "altruistic"
 
     costo_total, operaciones = transformar_fuerza_bruta(cadena_origen, cadena_final)
-    resultado_final = calcular_costo_total(operaciones)
+    resultado_final = calcular_costo(operaciones)
     print(f"Costo de la transformacion : {costo_total}")
-    print(f"Costo total (5a + d + r + 4i + k): {resultado_final}")
     print(f"Mejor secuencia de operaciones:")
     print(f'Operaciones: {operaciones}')

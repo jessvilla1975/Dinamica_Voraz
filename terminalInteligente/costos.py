@@ -9,22 +9,6 @@ COSTOS = {
     'kill': 1
 }
 
-def calcular_costo_total(operaciones):
-    costo = 0
-    for op in operaciones:
-        if op == 'advance':
-            costo += 5 * COSTOS['advance']
-        elif op == 'delete':
-            costo += COSTOS['delete']
-        elif op.startswith('replace'):
-            costo += COSTOS['replace']
-        elif op.startswith('insert'):
-            costo += 4 * COSTOS['insert']
-        elif op == 'kill':
-            costo += COSTOS['kill']
-    return costo
-
-
 def calcular_costo(operaciones):
     costo = 0
     for op in operaciones:
