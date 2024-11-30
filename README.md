@@ -4,12 +4,17 @@
 
 Este proyecto contiene la implementación de un algoritmo para transformar una cadena de texto `origen` en una cadena `destino`, minimizando el costo total de las operaciones de transformación (avanzar, borrar, insertar, reemplazar y eliminar) utilizando un enfoque de **Programación Dinámica**. También se implementa una versión **Programación Voraz** para resolver el problema de manera más eficiente en algunos casos.
 
-## Ejecución Terminal Inteligente
-
-`test.py`
-
-## Ejecución Subasta Publica
-`test2.py`
+## Ejecucion de tests
+Para correr los tests, se deben ejecutar los siguientes comando en la terminal:
+- **Ejecutar todos los tests**
+```bash
+sh test.sh
+```
+- **Ejecutar un test en específico**
+```bash
+sh test.sh terminal_inteligente_test
+sh test.sh subasta_test
+```
 
 ## Integrantes
 
