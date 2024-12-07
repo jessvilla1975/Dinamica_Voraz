@@ -5,39 +5,39 @@
 # version: 1.0
 
 
-from .costos import COSTOS, calcular_costo
 
+from .costos import calcular_costo
 
 # Funciones para realizar las operaciones
-def advance(cadena, posicion):
+def advance(cadena, posicion, costo_advance):
     if posicion < len(cadena):
-        return cadena, posicion + 1, COSTOS['advance']
+        return cadena, posicion + 1, costo_advance
     return cadena, posicion, 0  # Sin costo si no hay avance
 
-def delete(cadena, posicion):
+def delete(cadena, posicion, costo_delete):
     if posicion < len(cadena):
         nueva_cadena = cadena[:posicion] + cadena[posicion + 1:]
-        return nueva_cadena, posicion, COSTOS['delete']
+        return nueva_cadena, posicion, costo_delete
     return cadena, posicion, 0  # Sin costo si no hay eliminación
 
-def replace(cadena, posicion, nuevo_char):
+def replace(cadena, posicion, nuevo_char, costo_replace):
     if posicion < len(cadena):
         nueva_cadena = cadena[:posicion] + nuevo_char + cadena[posicion + 1:]
-        return nueva_cadena, posicion + 1, COSTOS['replace']
+        return nueva_cadena, posicion + 1, costo_replace
     return cadena, posicion, 0  # Sin costo si no hay reemplazo
 
-def insert(cadena, posicion, nuevo_char):
+def insert(cadena, posicion, nuevo_char, costo_insert):
     nueva_cadena = cadena[:posicion] + nuevo_char + cadena[posicion:]
-    return nueva_cadena, posicion + 1, COSTOS['insert']
+    return nueva_cadena, posicion + 1, costo_insert
 
-def kill(cadena, posicion):
+def kill(cadena, posicion, costo_kill):
     if posicion < len(cadena):
         nueva_cadena = cadena[:posicion]
-        return nueva_cadena, posicion, COSTOS['kill']
+        return nueva_cadena, posicion, costo_kill
     return cadena, posicion, 0  # Sin costo si no hay eliminación
 
 # Función para encontrar la mejor secuencia de transformación
-def transformar_fuerza_bruta(origen, destino):
+def transformar_fuerza_bruta(origen, destino, a, b, c, d, e):
     mejor_costo = float('inf')
     mejor_secuencia = []
     
@@ -58,26 +58,25 @@ def transformar_fuerza_bruta(origen, destino):
         # Intentar todas las operaciones
         if posicion < len(actual):
             # Advance
-            nueva_cadena, nueva_pos, costo = advance(actual, posicion)
+            nueva_cadena, nueva_pos, costo = advance(actual, posicion, a)
             backtrack(nueva_cadena, destino, nueva_pos, costo_actual + costo, secuencia + ['advance'])
             
             # Replace
             if posicion < len(destino):
-                nueva_cadena, nueva_pos, costo = replace(actual, posicion, destino[posicion])
+                nueva_cadena, nueva_pos, costo = replace(actual, posicion, destino[posicion], c)
                 backtrack(nueva_cadena, destino, nueva_pos, costo_actual + costo, secuencia + [f'replace with {destino[posicion]}'])
+            
             # Delete
-            nueva_cadena, nueva_pos, costo = delete(actual, posicion)
+            nueva_cadena, nueva_pos, costo = delete(actual, posicion, b)
             backtrack(nueva_cadena, destino, nueva_pos, costo_actual + costo, secuencia + ['delete'])
-            
-            
             
             # Insert
             if posicion < len(destino):
-                nueva_cadena, nueva_pos, costo = insert(actual, posicion, destino[posicion])
+                nueva_cadena, nueva_pos, costo = insert(actual, posicion, destino[posicion], d)
                 backtrack(nueva_cadena, destino, nueva_pos, costo_actual + costo, secuencia + [f'insert {destino[posicion]}'])
             
             # Kill
-            nueva_cadena, nueva_pos, costo = kill(actual, posicion)
+            nueva_cadena, nueva_pos, costo = kill(actual, posicion, e)
             backtrack(nueva_cadena, destino, nueva_pos, costo_actual + costo, secuencia + ['kill'])
     
     backtrack(origen, destino, 0, 0, [])
@@ -87,9 +86,23 @@ def transformar_fuerza_bruta(origen, destino):
 if __name__ == "__main__":
     cadena_origen = "algorithm"
     cadena_final = "altruistic"
+    
+    # Definir los costos
+    costos = {'advance': 1, 'delete': 2, 'replace': 3, 'insert': 2, 'kill': 1}
 
-    costo_total, operaciones = transformar_fuerza_bruta(cadena_origen, cadena_final)
-    resultado_final = calcular_costo(operaciones)
+    costo_total, operaciones = transformar_fuerza_bruta(
+        cadena_origen, cadena_final,
+        a=costos['advance'],
+        b=costos['delete'],
+        c=costos['replace'],
+        d=costos['insert'],
+        e=costos['kill']
+    )
+
+    # Calcular el costo total
+    resultado_final = calcular_costo(operaciones, costos['advance'], costos['delete'], costos['replace'], costos['insert'], costos['kill'])
+
+    # Mostrar los resultados
     print(f"Costo de la transformacion : {costo_total}")
     print(f"Mejor secuencia de operaciones:")
     print(f'Operaciones: {operaciones}')
