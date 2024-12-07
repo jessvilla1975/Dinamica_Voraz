@@ -7,22 +7,23 @@ def subasta_voraz(A, B, n, ofertas):
     ofertas: Lista de ofertas, cada una es una tripleta (precio, min_acciones, max_acciones).
     """
     # Ordenar las ofertas por precio de manera descendente
-    ofertas.sort(reverse=True, key=lambda x: x[0])
+    ofertas_ordenadas = sorted([(precio, min_acc, max_acc, i) 
+                               for i, (precio, min_acc, max_acc) in enumerate(ofertas[:n])], 
+                             reverse=True)
     
     mejor_asignacion = [0] * (n + 1)
     acciones_restantes = A
     valor_total = 0
 
-    for i in range(n):
-        if ofertas[i][0] >= B:  # Considerar solo las ofertas con precio mayor o igual a B
-            max_asignacion = min(ofertas[i][2], acciones_restantes)
-            if max_asignacion >= ofertas[i][1]:  # Asignar solo si se cumple el mínimo de acciones
-                mejor_asignacion[i] = max_asignacion
-                acciones_restantes -= max_asignacion
-                valor_total += max_asignacion * ofertas[i][0]
-    
-    # Asignar las acciones restantes al gobierno
-    mejor_asignacion[n] = acciones_restantes
-    valor_total += acciones_restantes * ofertas[n][0]
-    
+    # Procesar cada oferta en orden de precio descendente
+    for precio, min_acc, max_acc, indice_original in ofertas_ordenadas:
+        if precio >= B:  # Solo considerar ofertas que cumplan el precio mínimo
+            # Determinar cuántas acciones podemos asignar
+            if acciones_restantes >= min_acc:
+                acciones_asignar = min(max_acc, acciones_restantes)
+                if acciones_asignar >= min_acc:
+                    mejor_asignacion[indice_original] = acciones_asignar
+                    valor_total += acciones_asignar * precio
+                    acciones_restantes -= acciones_asignar
+
     return mejor_asignacion, valor_total
